@@ -5,6 +5,7 @@ ENV DEBIAN_FRONTEND noninteractive
 RUN apt-get update
 RUN apt-get install -y python3-pip git fuse
 
+RUN pip3 install --upgrade pip
 RUN pip3 install --upgrade git+https://github.com/yadayada/acd_cli.git
 
 ADD build.sh /opt
