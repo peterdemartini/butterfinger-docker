@@ -1,7 +1,7 @@
 local-encfs:
   build: encfs/
   volumes:
-   - /opt/butterfinger/data:/mnt:shared:shared
+   - /opt/butterfinger/data:/mnt:shared
   environment:
     MOUNT_SOURCE: /mnt/local-encrypted
     MOUNT_TARGET: /mnt/local-decrypted
