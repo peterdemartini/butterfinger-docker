@@ -1,7 +1,12 @@
 local-encfs:
   build: encfs/
   volumes:
-   - butterfinger-data:/mnt
+  - /opt/butterfinger/data:/mnt:shared
+  devices:
+  - /dev/fuse
+  cap_add:
+  - MKNOD
+  - SYS_ADMIN
   environment:
     MOUNT_SOURCE: /mnt/local-encrypted
     MOUNT_TARGET: /mnt/local-decrypted
@@ -12,7 +17,12 @@ local-encfs:
 acd-mount:
   build: acd-cli/
   volumes:
-   - butterfinger-data:/mnt
+  - /opt/butterfinger/data:/mnt:shared
+  devices:
+  - /dev/fuse
+  cap_add:
+  - MKNOD
+  - SYS_ADMIN
   environment:
     ACD_CLI_CACHE_PATH: /mnt/acd_cli/
     MOUNT_TARGET: /mnt/acd-encrypted
@@ -21,7 +31,12 @@ acd-mount:
 acd-encfs:
   build: encfs/
   volumes:
-   - butterfinger-data:/mnt
+  - /opt/butterfinger/data:/mnt:shared
+  devices:
+  - /dev/fuse
+  cap_add:
+  - MKNOD
+  - SYS_ADMIN
   environment:
     MOUNT_SOURCE: /mnt/acd-encrypted
     MOUNT_TARGET: /mnt/acd-decrypted
@@ -33,7 +48,12 @@ acd-encfs:
 unionfs:
   build: unionfs/
   volumes:
-   - butterfinger-data:/mnt
+  - /opt/butterfinger/data:/mnt:shared
+  devices:
+  - /dev/fuse
+  cap_add:
+  - MKNOD
+  - SYS_ADMIN
   environment:
     MOUNT_UNITE: /mnt/local-decrypted=RW:/mnt/acd-decrypted
     MOUNT_TARGET: /mnt/union/
