@@ -9,11 +9,11 @@ setup_it() {
 }
 
 wait_for_it() {
-  echo '* wait for it'
   local wait_for_mnt="$1"
   if [ ! "$wait_for_mnt" ]; then
     return 0
   fi
+  echo '* wait for it'
   while true ; do
     if mount | grep -q "$wait_for_mnt" ; then
       break
@@ -26,7 +26,7 @@ wait_for_it() {
 clean_up() {
   echo '* cleaning up'
   local mount_target="$1"
-  fusermount -u "$mount_target"
+  fusermount -u $mount_target
 }
 
 mount_it() {
