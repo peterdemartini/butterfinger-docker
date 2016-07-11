@@ -27,7 +27,7 @@ mount_it() {
 copy_oauth() {
   echo '* copying oauth'
   cat /config/oauth_data
-  cp /config/oauth_data /mnt/acd-cli
+  cp /config/oauth_data "$ACD_CLI_CACHE_PATH"
 }
 
 main() {
