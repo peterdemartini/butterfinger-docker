@@ -24,7 +24,7 @@ wait_for_it() {
 clean_up() {
   echo '* clean_up'
   local mount_target="$1"
-  fusermount -u $mount_target || return 0
+  fusermount -u "$mount_target" || return 0
 }
 
 mount_it() {
@@ -48,12 +48,12 @@ main() {
   echo " MOUNT_UNITE=$mount_unite"
   echo " MOUNT_TARGET=$mount_target"
   local wait_for_mnt="$WAIT_FOR_MNT"
-  wait_for_it "$wait_for_it" && \
-    setup_mount_target "$mount_target" && \
+  wait_for_it "$wait_for_it"
+  setup_mount_target "$mount_target" && \
     clean_up "$mount_target" && \
     mount_it "$mount_unite" "$mount_target" && \
-    echo '* done' && \
-    exit 0
+  echo '* done' && \
+  exit 0
 
   echo '* failed to build unionfs'
   exit 1
