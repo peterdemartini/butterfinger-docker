@@ -55,7 +55,7 @@ plexpass:
   image: timhaak/plexpass
   devices:
   - /dev/fuse
-  port:
+  ports:
   - 80:32400
   cap_add:
   - MKNOD
