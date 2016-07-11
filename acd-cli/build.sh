@@ -26,8 +26,8 @@ mount_it() {
 
 copy_oauth() {
   echo '* copying oauth'
-  cat /config/acd-cli/oauth_data
-  cp /config/acd-cli/oauth_data /mnt/acd-cli
+  cat /config/oauth_data
+  cp /config/oauth_data /mnt/acd-cli
 }
 
 main() {

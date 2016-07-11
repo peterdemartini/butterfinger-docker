@@ -15,7 +15,7 @@ acd-mount:
   build: acd-cli/
   volumes:
   - /mnt/butterfinger:/mnt:shared
-  - /opt/butterfinger/config/acd-cli:/config/acd-cli
+  - /opt/butterfinger/config/acd-cli:/config
   devices:
   - /dev/fuse
   cap_add:
@@ -63,6 +63,6 @@ plexpass:
   env_file:
   - /opt/butterfinger/config/plex-media-server.env
   volumes:
-  - /opt/butterfinger/config:/config
+  - /opt/butterfinger/config/plex:/config
   - /mnt/butterfinger/union:/data
   privileged: true
