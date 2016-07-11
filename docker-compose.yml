@@ -15,7 +15,7 @@ acd-mount:
   build: acd-cli/
   volumes:
   - /mnt/butterfinger:/mnt:shared
-  - /opt/butterfinger/config/acd_cli:/mnt/acd_cli
+  - /opt/butterfinger/config/acd-cli:/config/acd-cli
   devices:
   - /dev/fuse
   cap_add:

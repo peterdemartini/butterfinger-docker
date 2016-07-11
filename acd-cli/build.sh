@@ -3,6 +3,7 @@
 setup_mount_target() {
   echo '* setting up mount target'
   local mount_target="$1"
+  mkdir -p "$(dirname $mount_target)/acd_cli"
   mkdir -p "$mount_target"
 }
 
@@ -14,13 +15,19 @@ sync_it() {
 clean_up() {
   echo '* clean_up'
   local mount_target="$1"
-  fusermount -u $mount_target || return 0
+  fusermount -u $mount_target 2> /dev/null || return 0
 }
 
 mount_it() {
   echo '* mounting it'
   local mount_target="$1"
   exec acd_cli -d mount -i60 -fg "$mount_target"
+}
+
+copy_oauth() {
+  echo '* copying oauth'
+  cat /config/acd-cli/oauth_data
+  cp /config/acd-cli/oauth_data /mnt/acd-cli
 }
 
 main() {
@@ -34,6 +41,7 @@ main() {
   echo " MOUNT_TARGET=$mount_target"
 
   setup_mount_target "$mount_target" && \
+    copy_oauth && \
     sync_it && \
     clean_up "$mount_target" && \
     mount_it "$mount_target" && \
