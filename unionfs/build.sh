@@ -21,6 +21,15 @@ wait_for_it() {
   done
 }
 
+wait_for_dir() {
+  local wait_for_dir_path="$1"
+  while [ ! -d "$wait_for_dir_path" ]
+  do
+    echo "* waiting for $wait_for_dir_path"
+    sleep 5
+  done
+}
+
 clean_up() {
   echo '* clean_up'
   local mount_target="$1"
@@ -34,9 +43,15 @@ mount_it() {
 }
 
 main() {
-  local mount_unite="$MOUNT_UNITE"
-  if [ -z "$mount_unite" ]; then
-    echo "Missing MOUNT_UNITE env"
+  local mount_unite_from="$MOUNT_UNITE_FROM"
+  if [ -z "$mount_unite_from" ]; then
+    echo "Missing MOUNT_UNITE_FROM env"
+    exit 1
+  fi
+
+  local mount_unite_to="$MOUNT_UNITE_TO"
+  if [ -z "$mount_unite_to" ]; then
+    echo "Missing MOUNT_UNITE_TO env"
     exit 1
   fi
 
@@ -45,13 +60,17 @@ main() {
     echo "Missing MOUNT_TARGET env"
     exit 1
   fi
-  echo " MOUNT_UNITE=$mount_unite"
+
+  echo " MOUNT_UNITE_FROM=$mount_unite_from"
+  echo " MOUNT_UNITE_TO=$mount_unite_to"
   echo " MOUNT_TARGET=$mount_target"
   local wait_for_mnt="$WAIT_FOR_MNT"
   wait_for_it "$wait_for_it"
+  wait_for_dir "$mount_unite_from"
+  wait_for_dir "$mount_unite_to"
   setup_mount_target "$mount_target" && \
     clean_up "$mount_target" && \
-    mount_it "$mount_unite" "$mount_target" && \
+    mount_it "$mount_unite_from=RW:$mount_unite_to" "$mount_target" && \
   echo '* done' && \
   exit 0
 
