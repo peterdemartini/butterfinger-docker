@@ -1,7 +1,7 @@
 local-encfs:
   build: encfs/
   volumes:
-  - /opt/butterfinger/data:/mnt:shared
+  - /mnt/butterfinger:/mnt:shared
   devices:
   - /dev/fuse
   cap_add:
@@ -14,7 +14,7 @@ local-encfs:
 acd-mount:
   build: acd-cli/
   volumes:
-  - /opt/butterfinger/data:/mnt:shared
+  - /mnt/butterfinger:/mnt:shared
   devices:
   - /dev/fuse
   cap_add:
@@ -27,7 +27,7 @@ acd-mount:
 acd-encfs:
   build: encfs/
   volumes:
-  - /opt/butterfinger/data:/mnt:shared
+  - /mnt/butterfinger:/mnt:shared
   devices:
   - /dev/fuse
   cap_add:
@@ -40,7 +40,7 @@ acd-encfs:
 unionfs:
   build: unionfs/
   volumes:
-  - /opt/butterfinger/data:/mnt:shared
+  - /mnt/butterfinger:/mnt:shared
   devices:
   - /dev/fuse
   cap_add:
@@ -63,5 +63,5 @@ plexpass:
   - /opt/butterfinger/config/plex-media-server.env
   volumes:
   - /opt/butterfinger/config:/config
-  - /opt/butterfinger/data:/data
+  - /mnt/butterfinger/union:/data
   privileged: true
