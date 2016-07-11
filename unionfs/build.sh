@@ -24,7 +24,7 @@ wait_for_it() {
 clean_up() {
   echo '* clean_up'
   local mount_target="$1"
-  fusermount -u $mount_target
+  fusermount -u $mount_target || return 0
 }
 
 mount_it() {
