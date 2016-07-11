@@ -38,7 +38,8 @@ clean_up() {
 
 mount_it() {
   echo '* mounting it'
-  local mount_target="$1"
+  local mount_unite="$1"
+  local mount_target="$2"
   exec unionfs-fuse -d -o cow,allow_other "$mount_unite" "$mount_target"
 }
 
