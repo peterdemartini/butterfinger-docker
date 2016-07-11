@@ -35,7 +35,6 @@ acd-encfs:
   - SYS_ADMIN
   env_file:
   - /opt/butterfinger/config/acd-encfs.env
-  environment:
   privileged: true
 
 unionfs:
