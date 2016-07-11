@@ -68,6 +68,10 @@ main() {
     echo "Missing MOUNT_TARGET env"
     exit 1
   fi
+
+  echo " MOUNT_SOURCE=$mount_source"
+  echo " MOUNT_TARGET=$mount_target"
+
   local wait_for_mnt="$WAIT_FOR_MNT"
 
   wait_for_it "$wait_for_mnt" && \

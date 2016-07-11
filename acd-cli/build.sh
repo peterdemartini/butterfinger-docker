@@ -31,6 +31,8 @@ main() {
     exit 1
   fi
 
+  echo " MOUNT_TARGET=$mount_target"
+
   setup_mount_target "$mount_target" && \
     sync_it && \
     clean_up "$mount_target" && \
