@@ -73,7 +73,7 @@ plexpass:
   cap_add:
   - MKNOD
   - SYS_ADMIN
-  network_mode: host
+  net: host
   restart: always
   env_file:
   - /opt/butterfinger/config/plex-media-server.env
