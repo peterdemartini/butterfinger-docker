@@ -7,6 +7,7 @@ local-encfs:
   cap_add:
   - MKNOD
   - SYS_ADMIN
+  restart: always
   env_file:
   - /opt/butterfinger/config/local-encfs.env
   privileged: true
@@ -21,6 +22,7 @@ acd-mount:
   cap_add:
   - MKNOD
   - SYS_ADMIN
+  restart: always
   env_file:
   - /opt/butterfinger/config/acd-mount.env
   privileged: true
@@ -34,6 +36,7 @@ acd-encfs:
   cap_add:
   - MKNOD
   - SYS_ADMIN
+  restart: always
   env_file:
   - /opt/butterfinger/config/acd-encfs.env
   privileged: true
@@ -47,16 +50,17 @@ unionfs:
   cap_add:
   - MKNOD
   - SYS_ADMIN
+  restart: always
   env_file:
   - /opt/butterfinger/config/unionfs.env
   privileged: true
 
 plexpass:
-  image: timhaak/plexpass
+  image: wernight/plex-media-server
   devices:
   - /dev/fuse
   ports:
-    - 80:32400
+    - 32400:32400
     - 1900:1900/udp
     - 32469:32469
     - 3005:3005
@@ -69,6 +73,8 @@ plexpass:
   cap_add:
   - MKNOD
   - SYS_ADMIN
+  network_mode: host
+  restart: always
   env_file:
   - /opt/butterfinger/config/plex-media-server.env
   volumes:
