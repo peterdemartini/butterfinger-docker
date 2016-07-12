@@ -1,0 +1,2 @@
+0 * * * * root /opt/upload.sh /var/log/cron.log 2>&1
+0 * * * * root /opt/clean-up.sh /var/log/cron.log 2>&1
