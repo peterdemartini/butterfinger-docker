@@ -71,7 +71,7 @@ main() {
   wait_for_dir "$mount_unite_to"
   setup_mount_target "$mount_target" && \
     clean_up "$mount_target" && \
-    mount_it "$mount_unite_from=RW:$mount_unite_to=RO" "$mount_target" && \
+    mount_it "$mount_unite_from=RW:$mount_unite_to=RW" "$mount_target" && \
   echo '* done' && \
   exit 0
 
