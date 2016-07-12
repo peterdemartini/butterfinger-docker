@@ -56,7 +56,7 @@ plexpass:
   devices:
   - /dev/fuse
   ports:
-  - 80:80
+  - 80:32400
   cap_add:
   - MKNOD
   - SYS_ADMIN
