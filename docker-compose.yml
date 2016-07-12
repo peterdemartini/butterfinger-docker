@@ -56,7 +56,7 @@ unionfs:
   privileged: true
 
 plexpass:
-  image: wernight/plex-media-server
+  image: wernight/plex-media-server:latest
   devices:
   - /dev/fuse
   ports:
