@@ -46,14 +46,14 @@ mount_it_with_pass() {
   echo '* mounting it with pass'
   local mount_source="$1"
   local mount_target="$2"
-  exec encfs -o allow_other -f --extpass='/bin/echo $ENCFS_PASS' "$mount_source" "$mount_target"
+  exec encfs -o allow_root -f --extpass='/bin/echo $ENCFS_PASS' "$mount_source" "$mount_target"
 }
 
 mount_it_without_pass() {
   echo '* mounting it without pass'
   local mount_source="$1"
   local mount_target="$2"
-  exec encfs -o allow_other -f "$mount_source" "$mount_target"
+  exec encfs -o allow_root -f "$mount_source" "$mount_target"
 }
 
 main() {

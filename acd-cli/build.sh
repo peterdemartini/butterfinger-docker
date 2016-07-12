@@ -21,7 +21,7 @@ clean_up() {
 mount_it() {
   echo '* mounting it'
   local mount_target="$1"
-  exec acd_cli -d mount -i60 -fg "$mount_target"
+  exec acd_cli --allow-root --debug mount -i60 --foreground "$mount_target"
 }
 
 copy_oauth() {

@@ -40,7 +40,7 @@ mount_it() {
   echo '* mounting it'
   local mount_unite="$1"
   local mount_target="$2"
-  exec unionfs-fuse -d -o cow,allow_other "$mount_unite" "$mount_target"
+  exec unionfs-fuse -d -o cow,allow_root "$mount_unite" "$mount_target"
 }
 
 main() {
@@ -71,7 +71,7 @@ main() {
   wait_for_dir "$mount_unite_to"
   setup_mount_target "$mount_target" && \
     clean_up "$mount_target" && \
-    mount_it "$mount_unite_from=RW:$mount_unite_to" "$mount_target" && \
+    mount_it "$mount_unite_from=RW:$mount_unite_to=RO" "$mount_target" && \
   echo '* done' && \
   exit 0
 
